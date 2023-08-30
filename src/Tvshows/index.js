@@ -77,13 +77,6 @@ function Tvshow() {
         </Button>
         <Button
           onClick={() => {
-            filterTvshow("Crime");
-          }}
-        >
-          Crime
-        </Button>
-        <Button
-          onClick={() => {
             filterTvshow("Adventure");
           }}
         >
