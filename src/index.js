@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -7,16 +7,22 @@ import { StrictMode } from "react";
 import { MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 import { Notifications } from "@mantine/notifications";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+const queryClient = new QueryClient();
+
 root.render(
   <StrictMode>
-    <MantineProvider withGlobalStyles withNormalizeCSS>
-      <ModalsProvider>
-        <App />
-        <Notifications />
-      </ModalsProvider>
-    </MantineProvider>
+    <QueryClientProvider client={queryClient}>
+      <MantineProvider withGlobalStyles withNormalizeCSS>
+        <ModalsProvider>
+          <App />
+          <Notifications />
+        </ModalsProvider>
+      </MantineProvider>
+    </QueryClientProvider>
   </StrictMode>
 );
 
